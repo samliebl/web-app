@@ -2,16 +2,12 @@
 
 ```
 .
-|- .env (you will add your own)
-|- .env.example
-|- .gitignore
+|- .env (You will add your own)
+|- .env.example (As an example, with placeholder data, for what yours would look like)
 |- views/
 |  |- _layouts/
 |  |  |- base.njk
 |  |- index.njk
-|- node_modules/
-|- package-lock.json
-|- package.json
 |- public/
 |  |- css/
 |    |- tachyons.min.css
