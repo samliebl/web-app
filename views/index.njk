@@ -1,14 +1,12 @@
 {% extends "_layouts/base.njk" %}
 {% block content %}
-<h1>Web App Demonstration</h1>
 <div class="mt3 mb3"></div>
-<h2>Demonstration of a <code>GET</code> API call/request</h2>
 <!-- Section noting the GET response -->
 <section id="test-get">
-    <p>The fact this page is rendering is a demonstration of a <code>GET</code> API call.</p>
-    <p>Behind the scenes, the server contains the following routing for the API calls:</p>
-    <pre><code>
-// Routes
+    <h2>Demonstration of a <code>GET</code> API call/request</h2>
+    <p class="measure">The fact this page is rendering is a demonstration of a <code>GET</code> API call.</p>
+    <p class="measure">Behind the scenes, the server contains the following routing for the API calls:</p>
+    <pre><code>// Routes
 app.get('/', (req, res) => {
     res.render('index.njk', wrapper); // Pass the wrapper as context
 });
@@ -16,16 +14,15 @@ app.get('/', (req, res) => {
 app.post('/submit', (req, res) => {
     const { name } = req.body;
     res.json({ message: `Hello, ${name}! This is a POST response.` });
-});
-    </code></pre>
-    <p>When the user navigates to the base directory (<code>/</code>), the backend is serving an Nunjucks template to render to HTML in the browser via a GET API call.</p>
+});</code></pre>
+    <p class="measure">When the user navigates to the base directory (<code>/</code>), the backend is serving a Nunjucks template to render to HTML in the browser via a GET API call.</p>
 </section>
-<div class="mt3 mb3"></div>
+<div class="mv4"></div>
 <hr>
-<div class="mt3 mb3"></div>
+<div class="mv4"></div>
 <!-- Section to test POST request -->
-<h2>Demonstration of a <code>POST</code> API call/request</h2>
 <section id="test-post">
+    <h2>Demonstration of a <code>POST</code> API call/request</h2>
     <form id="nameForm" action="/submit" method="POST" class="mt3">
         <input type="text" name="name" id="nameInput" placeholder="Enter your name" class="ba b--moon-gray pa2 mb2 br2">
         <button type="submit" class="pa2 bg-blue b0 white br2 bn">Submit</button>
@@ -35,7 +32,15 @@ app.post('/submit', (req, res) => {
     <!-- Placeholder for displaying raw JSON POST response -->
     <pre id="jsonResponse" class="mt3 pa2 bg-light-gray"></pre>
 </section>
-<!-- JavaScript for handling AJAX requests -->
+<div class="mv4"></div>
+<hr>
+<div class="mv4"></div>
+<section id="client-side-javascript" class="measure">
+    <h2>Note on Client-Side JavaScript</h2>
+    <p class="measure">Then, there’s the JavaScript working on the front end to tie it all together and improve user experience.</p>
+    <p>You can find it by inspecting this page with your browser’s developer, tools, or by reviewing the code on the <a href="https://github.com/samliebl/web-app">GitHub repo</a>.</p>
+</section>
+<!-- Client-side JavaScript for handling AJAX requests -->
 <script type="text/javascript">
 // Handle POST request for form submission
 document.getElementById('nameForm').addEventListener('submit', function(event) {
