@@ -1,0 +1,68 @@
+{% extends "_layouts/base.njk" %}
+{% block content %}
+<h1>Web App Demonstration</h1>
+<div class="mt3 mb3"></div>
+<h2>Demonstration of a <code>GET</code> API call/request</h2>
+<!-- Section noting the GET response -->
+<section id="test-get">
+    <p>The fact this page is rendering is a demonstration of a <code>GET</code> API call.</p>
+    <p>Behind the scenes, the server contains the following routing for the API calls:</p>
+    <pre><code>
+// Routes
+app.get('/', (req, res) => {
+    res.render('index.njk', wrapper); // Pass the wrapper as context
+});
+
+app.post('/submit', (req, res) => {
+    const { name } = req.body;
+    res.json({ message: `Hello, ${name}! This is a POST response.` });
+});
+    </code></pre>
+    <p>When the user navigates to the base directory (<code>/</code>), the backend is serving an Nunjucks template to render to HTML in the browser via a GET API call.</p>
+</section>
+<div class="mt3 mb3"></div>
+<hr>
+<div class="mt3 mb3"></div>
+<!-- Section to test POST request -->
+<h2>Demonstration of a <code>POST</code> API call/request</h2>
+<section id="test-post">
+    <form id="nameForm" action="/submit" method="POST" class="mt3">
+        <input type="text" name="name" id="nameInput" placeholder="Enter your name" class="ba b--moon-gray pa2 mb2 br2">
+        <button type="submit" class="pa2 bg-blue b0 white br2 bn">Submit</button>
+    </form>
+    <!-- Placeholder for displaying styled POST response -->
+    <div id="responseMessage" class="mt3"></div>
+    <!-- Placeholder for displaying raw JSON POST response -->
+    <pre id="jsonResponse" class="mt3 pa2 bg-light-gray"></pre>
+</section>
+<!-- JavaScript for handling AJAX requests -->
+<script type="text/javascript">
+// Handle POST request for form submission
+document.getElementById('nameForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
+
+    // Get the input value
+    const nameInput = document.getElementById('nameInput').value;
+
+    // Send AJAX request to server
+    fetch('/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: nameInput })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Display the POST response message in styled HTML
+            document.getElementById('responseMessage').innerHTML = `
+            <p class="pa2">${data.message}</p>
+        `;
+
+            // Display the raw JSON POST response
+            document.getElementById('jsonResponse').textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(error => console.error('Error:', error));
+});
+</script>
+{% endblock %}

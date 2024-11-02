@@ -1,0 +1,29 @@
+{
+  "name": "web-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "start:dev": "nodemon --watch views --watch public --ext js,njk,css server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samliebl/web-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samliebl/web-app/issues"
+  },
+  "homepage": "https://github.com/samliebl/web-app#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "nunjucks": "^3.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}
