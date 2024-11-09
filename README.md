@@ -1,5 +1,17 @@
 # Web App
 
+Demonstrating:
+
+### REST APIs
+
+Demonstration of a GET API call/request  
+Rendering the site with Nunjucks via Express
+
+Demonstration of a POST API call/request  
+Enter your name to launch a POST request
+
+Note on the client-side JavaScript
+
 ```
 .
 |- .env (You will add your own)
@@ -67,4 +79,6 @@ app.listen(PORT, () => {
 });
 ```
 
-## LICENSE.txt
+## LICENSE
+
+MIT
