@@ -10,7 +10,15 @@ const PORT = process.env.PORT || 3000;
 // Data object for rendering context
 const data = {
     site: {
-        title: 'Web App'
+        title: 'Web App',
+        css: [
+            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/atom-one-light.min.css',
+            '/css/index.css'
+        ],
+        js: [
+            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js',
+            '/js/main.js'
+        ]
     },
     pages: [{
         index: null
