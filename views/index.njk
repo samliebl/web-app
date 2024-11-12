@@ -1,7 +1,6 @@
 {% extends "_layouts/base.njk" %}
 {% block content %}
-<div></div>
-<!-- Section noting the GET response -->
+<!-- Section outlining the GET response -->
 <section id="test-get">
     <h2>Demonstration of a <code>GET</code> API call/request</h2>
     <p>The fact this page is rendering is a demonstration of a <code>GET</code> API call.</p>
@@ -18,7 +17,6 @@ app.post('/submit', (req, res) => {
     <p>When the user navigates to the base directory (<code>/</code>), the backend is serving a Nunjucks template to render to HTML in the browser via a GET API call.</p>
 </section>
 <hr>
-
 <!-- Section to test POST request -->
 <h2 id="test-post">Two Demonstrations of <code>POST</code> API call/requests</h2>
 <!-- Simple POST request demonstration -->
@@ -37,8 +35,10 @@ app.post('/submit', (req, res) => {
 <!-- Section to test Whisper POST request -->
 <section id="test-post-whisper">
     <h3>2: A more complex <code>POST</code> request</h3>
+    <p>This part is a bit more interesting. I'm particularly interested in text-to-speech and speech-to-text work. I've had a lot of fun playing around with <a href="https://openai.com/index/whisper/">Whisper</a> by <a href="https://openai.com">OpenAI</a>. You may know them as the makers of ChatGPT. Whisper is a pretty advanced, at least for the general public, way to build transcription features into applications. You upload a file of someone talking and it transcribes it.</p>
+    <p>As a personal request, please keep it two minutes or less. I'm paying OpenAI for this myself!</p>
     <form id="transcription-form" enctype="multipart/form-data">
-        <label for="audio">Upload an audio file:</label>
+        <label for="audio">Upload audio of someone talking in one of these formats: <code>.mp3</code>, <code>.wav</code>, <code>.m4a</code>, <code>.ogg</code> or <code>.webm</code>.</label>
         <input type="file" name="audio" accept="audio/*" required />
         <button type="submit">Upload and Transcribe</button>
     </form>
@@ -90,9 +90,42 @@ app.post('/submit', (req, res) => {
 </section>
 <hr>
 <section id="client-side-javascript">
-    <h2>Note on Client-Side JavaScript</h2>
-    <p>Then, there’s the JavaScript working on the front end to tie it all together and improve user experience.</p>
-    <p>You can find it by inspecting this page with your browser’s developer, tools, or by reviewing the code on the <a href="https://github.com/samliebl/web-app">GitHub repo</a>.</p>
+    <h2>Details on the client-side JavaScript</h2>
+    <p>Then, there’s the JavaScript working on the front end to tie it all together and improve user experience. The technique we’re employing here is called AJAX,<sup>1</sup> and it’s pretty much manadatory for any kind of UX I’d want to create.</p>
+    <p>That’s a technique that enables sites to update without a full reload. Without it, all this would still work—you’d just be taken over to a new, separate page with the options to copy or download the file. I think it's nicer when it just populates right there.</p>
+    <pre><code class="language-js">document.getElementById('transcription-form').addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+
+        try {
+            const response = await fetch('/transcribe', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+
+            if (result.transcription) {
+                document.getElementById('transcription-text').textContent = result.transcription;
+                document.getElementById('download-link').href = `/download-transcription/${result.fileName}`;
+                document.getElementById('transcription-result').style.display = 'block';
+            } else {
+                document.getElementById('transcription-text').textContent = 'Transcription failed. Please try again.';
+                document.getElementById('transcription-result').style.display = 'block';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            document.getElementById('transcription-text').textContent = 'An error occurred. Please try again later.';
+            document.getElementById('transcription-result').style.display = 'block';
+        }
+});</code></pre>
+    <p>You can also dive in “inspecting” this page (on any browser, you cam right click and select an option that should be something like “Inspect” or “Inspect this webpage”, “Inspect element”, etc.) with your browser’s developer tools. Finally, youcan review the code on the <a href="https://github.com/samliebl/web-app">GitHub repo</a> in the <code>views/index.njk</code> template.</p>
+</section>
+<section>
+    <h4>Notes</h4>
+    <ol>
+        <li>AJAX (Asynchronous JavaScript and XML) is a way to (among many other things) go back and forth with servers in such a way that it allows parts of a page to <em>update without a full reload.</em> In this application, AJAX is utilized to handle “form submissions” (uploading that file and returning the transcription). When you submit that form (or uploads a file), AJAX shoots it to the server in the  background. While nobody’s looking 😆, the page updates dynamically and it’s just right there!</li>
+    </ol>
 </section>
 <!-- Client-side JavaScript for handling AJAX requests -->
 <script type="text/javascript">

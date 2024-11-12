@@ -22,9 +22,26 @@ const __dirname = dirname(__filename);
 const data = {
     site: {
         title: 'Web App',
-        css: [
-            'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/atom-one-light.min.css',
-            '/css/index.css'
+        links: [{
+                rel: 'preconnect',
+                href: 'https://rsms.me/'
+            },
+            {
+                rel: 'stylesheet',
+                href: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/atom-one-light.min.css'
+            },
+            {
+                rel: 'stylesheet',
+                href: 'https://rsms.me/inter/inter.css'
+            },
+            {
+                rel: 'stylesheet',
+                href: 'https://cdn.jsdelivr.net/npm/water.css@2/out/water.css'
+            },
+            {
+                rel: 'stylesheet',
+                href: '/css/index.css'
+            },
         ],
         js: [
             'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js',

@@ -1,16 +1,19 @@
 # Web App
 
-Demonstrating:
+Demonstrating some facility with REST APIs and what you can do with them. I also talk about the client-side AJAX code that's bringing this all together for a better user experience.
 
-### REST APIs
+### REST API Demos
 
-Demonstration of a GET API call/request  
-Rendering the site with Nunjucks via Express
+1. Demonstration of a GET API call/request  
+    1. Rendering the site with Nunjucks via Express
+1. Two Demonstrations of POST API call/requests
+    1. A simple POST API call/request
+    1. A more complex POST request
+1. Note on the client-side JavaScript
 
-Demonstration of a POST API call/request  
-Enter your name to launch a POST request
+--
 
-Note on the client-side JavaScript
+
 
 ```
 .
@@ -78,6 +81,10 @@ app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });
 ```
+
+Client-side JavaScript
+
+
 
 ## LICENSE
 

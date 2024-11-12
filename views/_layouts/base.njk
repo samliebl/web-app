@@ -6,8 +6,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{{ data.site.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% for sheet in data.site.css %}
-    <link rel="stylesheet" href="{{ sheet }}">
+    {% for link in data.site.links %}
+    <link rel="{{ link.rel }}" href="{{ link.href }}">
     {% endfor %}
 </head>
 
