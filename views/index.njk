@@ -94,30 +94,30 @@ app.post('/submit', (req, res) => {
     <p>Then, there’s the JavaScript working on the front end to tie it all together and improve user experience. The technique we’re employing here is called AJAX,<sup>1</sup> and it’s pretty much manadatory for any kind of UX I’d want to create.</p>
     <p>That’s a technique that enables sites to update without a full reload. Without it, all this would still work—you’d just be taken over to a new, separate page with the options to copy or download the file. I think it's nicer when it just populates right there.</p>
     <pre><code class="language-js">document.getElementById('transcription-form').addEventListener('submit', async function(event) {
-        event.preventDefault();
+    event.preventDefault();
 
-        const formData = new FormData(this);
+    const formData = new FormData(this);
 
-        try {
-            const response = await fetch('/transcribe', {
-                method: 'POST',
-                body: formData
-            });
-            const result = await response.json();
+    try {
+        const response = await fetch('/transcribe', {
+            method: 'POST',
+            body: formData
+        });
+        const result = await response.json();
 
-            if (result.transcription) {
-                document.getElementById('transcription-text').textContent = result.transcription;
-                document.getElementById('download-link').href = `/download-transcription/${result.fileName}`;
-                document.getElementById('transcription-result').style.display = 'block';
-            } else {
-                document.getElementById('transcription-text').textContent = 'Transcription failed. Please try again.';
-                document.getElementById('transcription-result').style.display = 'block';
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            document.getElementById('transcription-text').textContent = 'An error occurred. Please try again later.';
+        if (result.transcription) {
+            document.getElementById('transcription-text').textContent = result.transcription;
+            document.getElementById('download-link').href = `/download-transcription/${result.fileName}`;
+            document.getElementById('transcription-result').style.display = 'block';
+        } else {
+            document.getElementById('transcription-text').textContent = 'Transcription failed. Please try again.';
             document.getElementById('transcription-result').style.display = 'block';
         }
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('transcription-text').textContent = 'An error occurred. Please try again later.';
+        document.getElementById('transcription-result').style.display = 'block';
+    }
 });</code></pre>
     <p>You can also dive in “inspecting” this page (on any browser, you cam right click and select an option that should be something like “Inspect” or “Inspect this webpage”, “Inspect element”, etc.) with your browser’s developer tools. Finally, youcan review the code on the <a href="https://github.com/samliebl/web-app">GitHub repo</a> in the <code>views/index.njk</code> template.</p>
 </section>

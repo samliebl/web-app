@@ -1,14 +1,14 @@
 <!doctype html>
-<html lang="">
+<html lang="en-us">
 
 <head>
+    {% for link in data.site.links %}
+    <link rel="{{ link.rel }}" href="{{ link.href }}">
+    {% endfor %}
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{{ data.site.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% for link in data.site.links %}
-    <link rel="{{ link.rel }}" href="{{ link.href }}">
-    {% endfor %}
 </head>
 
 <body>
@@ -21,7 +21,7 @@
             <h3>Here’s the content of this site:</h3>
             <ol>
                 <li><a href="#test-get">Rendering site with <code>GET</code> API call/request</a></li>
-                <li><a href="#test-post">Two Demonstrations of POST API call/requests</a>
+                <li><a href="#test-post">Two Demonstrations of <code>POST</code> API call/requests</a>
                     <ol>
                         <li><a href="#test-post-simple"><code>POST</code> API call/request demonstration</a></li>
                         <li><a href="#test-post-whisper">A more complex <code>POST</code> API call/request with Whisper by OpenAI</a></li>
