@@ -3,7 +3,7 @@
 <!-- Section outlining the GET response -->
 <section id="test-get">
     <h2>Demonstration of a <code>GET</code> API call/request</h2>
-    <p>The fact this page is rendering is a demonstration of a <code>GET</code> API call.</p>
+    <p>The fact this page is rendering is a demonstration of a <code>GET</code> API call. If you're familiar working with the server framework <a href="https://expressjs.com/">Express</a>, this should look very familiar.</p>
     <p>Behind the scenes, the server contains the following routing for the API calls:</p>
     <pre><code class="language-js">// Routes
 app.get('/', (req, res) => {
@@ -13,7 +13,11 @@ app.get('/', (req, res) => {
 app.post('/submit', (req, res) => {
     const { name } = req.body;
     res.json({ message: `Hello, ${name}! This is a POST response.` });
-});</code></pre>
+});
+
+// All things with the Whisper POST request are further down in `server.js`. 
+// There are many lines of code, so in the interest of brevity, I'm not 
+// including them here. For details, check out the source code on GitHub.</code></pre>
     <p>When the user navigates to the base directory (<code>/</code>), the backend is serving a Nunjucks template to render to HTML in the browser via a GET API call.</p>
 </section>
 <hr>
@@ -91,7 +95,8 @@ app.post('/submit', (req, res) => {
 <hr>
 <section id="client-side-javascript">
     <h2>Details on the client-side JavaScript</h2>
-    <p>Then, there’s the JavaScript working on the front end to tie it all together and improve user experience. The technique we’re employing here is called AJAX,<sup>1</sup> and it’s pretty much manadatory for any kind of UX I’d want to create.</p>
+    <p>We all love the server side. But I started in web development as a front-end developer. I wanted to make my websites look nice and load quickly. So you aren't getting out of here without me showing off some of the client side stuff going on.</p>
+    <p>The JavaScript working on the front end to tie it all together and improve user experience. The technique we’re employing here is called AJAX,<sup>1</sup> and it’s pretty much manadatory for any kind of UX I’d want to create.</p>
     <p>That’s a technique that enables sites to update without a full reload. Without it, all this would still work—you’d just be taken over to a new, separate page with the options to copy or download the file. I think it's nicer when it just populates right there.</p>
     <pre><code class="language-js">document.getElementById('transcription-form').addEventListener('submit', async function(event) {
     event.preventDefault();
@@ -119,7 +124,7 @@ app.post('/submit', (req, res) => {
         document.getElementById('transcription-result').style.display = 'block';
     }
 });</code></pre>
-    <p>You can also dive in “inspecting” this page (on any browser, you cam right click and select an option that should be something like “Inspect” or “Inspect this webpage”, “Inspect element”, etc.) with your browser’s developer tools. Finally, youcan review the code on the <a href="https://github.com/samliebl/web-app">GitHub repo</a> in the <code>views/index.njk</code> template.</p>
+    <p>You can also dive in “inspecting” this page (on any browser, you cam right click and select an option that should be something like “Inspect” or “Inspect this webpage”, “Inspect element”, etc.) with your browser’s developer tools. Finally, you can review the code on the <a href="https://github.com/samliebl/web-app">GitHub repo</a> in the <code>views/index.njk</code> template.</p>
 </section>
 <section>
     <h4>Notes</h4>
