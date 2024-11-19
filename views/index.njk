@@ -51,6 +51,7 @@ app.post('/submit', (req, res) => {
         <p id="transcription-text"></p>
         <div>
             <a href="#" id="copy-result" onclick="copyToClipboard(event)">Copy Result</a> |
+            <a href="#" onclick="clearTranscription(event)">Clear Transcription</a> |
             <a id="download-link" href="#" download>Download Transcription</a>
         </div>
     </div>
@@ -89,6 +90,13 @@ app.post('/submit', (req, res) => {
         navigator.clipboard.writeText(transcriptionText).catch(err => {
             console.error('Failed to copy text:', err);
         });
+    }
+
+    // New function to clear the transcription result
+    function clearTranscription(event) {
+        event.preventDefault(); // Prevents the page from jumping to the top
+        document.getElementById('transcription-text').textContent = ""; // Clear the text content
+        document.getElementById('transcription-result').style.display = 'none'; // Hide the result section
     }
     </script>
 </section>
@@ -129,7 +137,7 @@ app.post('/submit', (req, res) => {
 <section>
     <h4>Notes</h4>
     <ol>
-        <li>AJAX (Asynchronous JavaScript and XML) is a way to (among many other things) go back and forth with servers in such a way that it allows parts of a page to <em>update without a full reload.</em> In this application, AJAX is utilized to handle “form submissions” (uploading that file and returning the transcription). When you submit that form (or uploads a file), AJAX shoots it to the server in the  background. While nobody’s looking 😆, the page updates dynamically and it’s just right there!</li>
+        <li>AJAX (Asynchronous JavaScript and XML) is a way to (among many other things) go back and forth with servers in such a way that it allows parts of a page to <em>update without a full reload.</em> In this application, AJAX is utilized to handle “form submissions” (uploading that file and returning the transcription). When you submit that form (or uploads a file), AJAX shoots it to the server in the background. While nobody’s looking 😆, the page updates dynamically and it’s just right there!</li>
     </ol>
 </section>
 <!-- Client-side JavaScript for handling AJAX requests -->
