@@ -112,7 +112,6 @@ app.post('/transcribe', upload.single('audio'), async (req, res) => {
     }
 });
 
-
 // Route to download the transcription text file
 app.get('/download-transcription/:fileName', (req, res) => {
     const transcriptPath = path.join(__dirname, 'uploads', req.params.fileName);
