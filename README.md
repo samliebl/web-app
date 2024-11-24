@@ -15,24 +15,50 @@ Find it live at [app.samliebl.com](https://app.samliebl.com).
 
 --
 
+### Routes
+
+Each route/API request is modularized into its own route in a `routes/` directory. There's a `routes/index.js` that collects all the route modules and exports them up to `server.js`, which in turn puts them in the mix like so...
+
+```js
+app.use('/', routes);
+```
+
+#### Notes on paths
+
+The transcription feature allows users to download a plain text file of the transcription. To support this, there's an `uploads/` directory located at the project's root level. Since path resolution within `routes/` files can be tricky (e.g., `__dirname` resolves to the `routes/` directory), the app uses a middleware function defined before `app.use()` for the routes. This middleware attaches the project root path to the `request` object as `req.projectRoot`. By consistently using `req.projectRoot` to construct paths in route handlers, we ensure that all file operations (e.g., reading or writing in `uploads/`) reliably point to the correct directory, regardless of where the route files are located.
+
+```js
+// Use modularized routes
+app.use((req, res, next) => {
+    req.projectRoot = projectRoot; // Attach project root to request object
+    next();
+});
+```
+
 ### Directory structure
 
 ```
 .
-|- .env¹
-|- .env.example²
-|- views/
-|  |- _layouts/
-|  |  |- base.njk
-|  |- index.njk
-|  |- error.njk
-|- public/
-|  |- css/
-|    |- main.css
-|  |- js/
-|    |- main.js
-|- uploads/³
-|- server.js
+├╴ .env¹
+├╴ .env.example²
+├╴ views/
+│  ├╴ _layouts/
+│  │   └╴ base.njk
+│  ├╴ index.njk
+│  └╴ error.njk
+├╴ public/
+│  ├╴ css/
+│  │  └╴ main.css
+│  └╴ js/
+│     └╴ main.js
+├╴ routes/
+│  ├╴ download-transcription.js
+│  ├╴ home.js
+│  ├╴ index.js
+│  ├╴ submit.js
+│  └╴ transcribe.njk
+├╴ uploads/³
+└╴ server.js
 
 ---
 Notes:
