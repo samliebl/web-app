@@ -1,6 +1,7 @@
 node_modules
 .DS_Store
 .env
+nodemon.json
 
 # Ignore everything in the uploads folder
 uploads/*

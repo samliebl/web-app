@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "start:dev": "nodemon --watch views --watch public --watch routes --watch server.js --ext js,njk,css server.js"
+    "start:dev": "nodemon",
+    "start:devsync": "concurrently \"nodemon\" \"browser-sync start --proxy http://localhost:3000 --port 3001 --files 'public/**/*, views/**/*, routes/**/*' --no-notify\""
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,8 @@
     "nunjucks": "^3.2.4"
   },
   "devDependencies": {
+    "browser-sync": "^3.0.3",
+    "concurrently": "^9.1.0",
     "nodemon": "^3.1.7"
   }
 }
