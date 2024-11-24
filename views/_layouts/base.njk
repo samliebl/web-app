@@ -2,13 +2,11 @@
 <html lang="en-us">
 
 <head>
-    {% for link in data.site.links %}
-    <link rel="{{ link.rel }}" href="{{ link.href }}">
-    {% endfor %}
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{{ data.site.title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 
 <body>
@@ -50,12 +48,6 @@
             <li><a href="https://nodemon.io">nodemon</a> by <a href="https://remysharp.com">Remy Sharp</a>, an indispensable tool for almost any development project.</li>
         </ul>
     </footer>
-    {% for script in data.site.js %}
-    <script type="text/javascript" src="{{ script }}"></script>
-    {% endfor %}
-    <script type="text/javascript">
-    hljs.highlightAll();
-    </script>
 </body>
 
 </html>

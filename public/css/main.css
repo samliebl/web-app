@@ -1,37 +1,17 @@
-/* Typefaces--I'm picky about things like typography */
-
-@font-face {
-    font-family: 'Inter';
-    src: url('/typefaces/Inter-Regular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Inter';
-    src: url('/typefaces/Inter-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Inter';
-    src: url('/typefaces/Inter-Italic.woff2') format('woff2');
-    font-weight: 400;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Inter';
-    src: url('/typefaces/Inter-BoldItalic.woff2') format('woff2');
-    font-weight: 700;
-    font-style: italic;
-}
-
+@charset "utf-8";
 
 /* Water.css by kognise w/ some customizations */
 
-@charset "UTF-8";
+html,
+body {
+    /* For WebKit (Chrome, Safari) */
+    -webkit-font-smoothing: subpixel-antialiased;
+    /* For Firefox */
+    font-smoothing: antialiased;
+    /* For Edge */
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
 
 body {
     font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -48,10 +28,10 @@ button,
 input,
 textarea {
     transition: background-color 0.1s linear,
-    border-color 0.1s linear,
-    color 0.1s linear,
-    box-shadow 0.1s linear,
-    transform 0.1s ease;
+        border-color 0.1s linear,
+        color 0.1s linear,
+        box-shadow 0.1s linear,
+        transform 0.1s ease;
 }
 
 h1 {
@@ -134,7 +114,7 @@ select,
 button,
 textarea {
     -webkit-appearance: none;
-	display: inline;
+    display: inline;
 
 }
 
@@ -153,11 +133,12 @@ input[type='button'] {
 }
 
 input[type='file'] {
-	background: none;
+    background: none;
 }
 
-input[type='text'], button {
-	display: inline;
+input[type='text'],
+button {
+    display: inline;
 }
 
 button:hover,
@@ -277,8 +258,6 @@ tbody tr:nth-child(even) {
     background: #c4c4c4;
 }
 
-/*# sourceMappingURL=light.css.map */
-
 /* Highlight.js: Atom One Light Theme */
 
 pre code.hljs {
@@ -381,13 +360,20 @@ h3 code,
 h4 code,
 h5 code,
 h6 code {
-	font-size: inherit;
+    font-size: inherit;
 }
 
-sub, sup {
-	line-height: 0;
+sub,
+sup {
+    line-height: 0;
 }
 
-p, ul, ol, li, dl, dd, dt {
-	line-height: 1.65;
+p,
+ul,
+ol,
+li,
+dl,
+dd,
+dt {
+    line-height: 1.65;
 }
