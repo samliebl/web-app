@@ -6,6 +6,7 @@ import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import routes from './routes/index.js'; // Import modularized routes
 
+// Dotenv config.
 dotenv.config();
 
 const app = express();
