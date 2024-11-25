@@ -55,50 +55,6 @@ app.post('/submit', (req, res) => {
             <a id="download-link" href="#" download>Download Transcription</a>
         </div>
     </div>
-    <script>
-    document.getElementById('transcription-form').addEventListener('submit', async function(event) {
-        event.preventDefault();
-
-        const formData = new FormData(this);
-
-        try {
-            const response = await fetch('/transcribe', {
-                method: 'POST',
-                body: formData
-            });
-            const result = await response.json();
-
-            if (result.transcription) {
-                document.getElementById('transcription-text').textContent = result.transcription;
-                document.getElementById('download-link').href = `/download-transcription/${result.fileName}`;
-                document.getElementById('transcription-result').style.display = 'block';
-            } else {
-                document.getElementById('transcription-text').textContent = 'Transcription failed. Please try again.';
-                document.getElementById('transcription-result').style.display = 'block';
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            document.getElementById('transcription-text').textContent = 'An error occurred. Please try again later.';
-            document.getElementById('transcription-result').style.display = 'block';
-        }
-    });
-
-    // Function to copy transcription text to clipboard
-    function copyToClipboard(event) {
-        event.preventDefault(); // Prevents the page from jumping to the top
-        const transcriptionText = document.getElementById('transcription-text').textContent;
-        navigator.clipboard.writeText(transcriptionText).catch(err => {
-            console.error('Failed to copy text:', err);
-        });
-    }
-
-    // New function to clear the transcription result
-    function clearTranscription(event) {
-        event.preventDefault(); // Prevents the page from jumping to the top
-        document.getElementById('transcription-text').textContent = ""; // Clear the text content
-        document.getElementById('transcription-result').style.display = 'none'; // Hide the result section
-    }
-    </script>
 </section>
 <hr>
 <section id="client-side-javascript">
@@ -140,34 +96,4 @@ app.post('/submit', (req, res) => {
         <li>AJAX (Asynchronous JavaScript and XML) is a way to (among many other things) go back and forth with servers in such a way that it allows parts of a page to <em>update without a full reload.</em> In this application, AJAX is utilized to handle “form submissions” (uploading that file and returning the transcription). When you submit that form (or uploads a file), AJAX shoots it to the server in the background. While nobody’s looking 😆, the page updates dynamically and it’s just right there!</li>
     </ol>
 </section>
-<!-- Client-side JavaScript for handling AJAX requests -->
-<script type="text/javascript">
-// Handle POST request for form submission
-document.getElementById('nameForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent default form submission
-
-    // Get the input value
-    const nameInput = document.getElementById('nameInput').value;
-
-    // Send AJAX request to server
-    fetch('/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ name: nameInput })
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Display the POST response message in styled HTML
-            document.getElementById('responseMessage').innerHTML = `
-            <p>${data.message}</p>
-        `;
-
-            // Display the raw JSON POST response
-            document.getElementById('jsonResponse').textContent = JSON.stringify(data, null, 2);
-        })
-        .catch(error => console.error('Error:', error));
-});
-</script>
 {% endblock %}
