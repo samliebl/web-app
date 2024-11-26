@@ -26,7 +26,7 @@ const wrapper = { data };
 
 // GET route to render the homepage with Nunjucks
 router.get('/', (req, res) => {
-    res.render('index.njk', wrapper);
+    res.render('index.njk', { data: undefined, error: undefined }); // Ensure no result is passed
 });
 
 export default router;

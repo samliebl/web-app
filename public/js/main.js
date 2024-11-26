@@ -1,7 +1,9 @@
 // Placeholder JavaScript
 console.log("JavaScript file loaded.");
 
-// Handle GET request demonstration
+/* -------------------------------
+   Handle POST request for name form
+-------------------------------- */
 document.getElementById('nameForm')?.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -26,7 +28,9 @@ document.getElementById('nameForm')?.addEventListener('submit', async (event) =>
     }
 });
 
-// Handle POST request for Whisper transcription
+/* -------------------------------
+   Handle POST request for Whisper transcription
+-------------------------------- */
 document.getElementById('transcription-form')?.addEventListener('submit', async (event) => {
     event.preventDefault();
 
@@ -54,18 +58,56 @@ document.getElementById('transcription-form')?.addEventListener('submit', async 
     }
 });
 
-// Function to copy transcription text to clipboard
+/* -------------------------------
+   Clipboard and Clear Functions
+-------------------------------- */
+// Copy transcription text to clipboard
 function copyToClipboard(event) {
     event.preventDefault();
     const transcriptionText = document.getElementById('transcription-text').textContent;
-    navigator.clipboard.writeText(transcriptionText).catch((err) => {
-        console.error('Failed to copy text:', err);
-    });
+    navigator.clipboard.writeText(transcriptionText)
+        .then(() => {
+            console.log('Copied to clipboard successfully!');
+        })
+        .catch((err) => {
+            console.error('Failed to copy text:', err);
+            alert('Failed to copy text to clipboard. Please try again.');
+        });
 }
 
-// Function to clear the transcription result
+// Clear the transcription result
 function clearTranscription(event) {
     event.preventDefault();
     document.getElementById('transcription-text').textContent = '';
     document.getElementById('transcription-result').style.display = 'none';
 }
+
+/* -------------------------------
+   Handle POST request for Lookup form
+-------------------------------- */
+document.getElementById('lookupForm')?.addEventListener('submit', async function (event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const phoneNumber = document.getElementById('phoneNumber').value;
+
+    try {
+        const response = await fetch('/lookup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ phoneNumber }),
+        });
+
+        const result = await response.json();
+
+        if (result.error) {
+            document.getElementById('lookupResult').innerHTML = `<h2>Error:</h2><pre>${result.error}</pre>`;
+        } else {
+            document.getElementById('lookupResult').innerHTML = `<h2>Lookup Result:</h2><pre>${JSON.stringify(result.data, null, 2)}</pre>`;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('lookupResult').innerHTML = `<h2>Error:</h2><pre>${error.message}</pre>`;
+    }
+});

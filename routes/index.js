@@ -3,13 +3,15 @@ import homeRouter from './home.js';
 import submitRouter from './submit.js';
 import transcribeRouter from './transcribe.js';
 import downloadTranscriptionRouter from './download-transcription.js';
+import lookupRouter from './lookup.js';
 
 const router = Router();
 
-// Use modularized routes
-router.use('/', homeRouter); // Handles homepage
-router.use('/submit', submitRouter); // Handles POST /submit
-router.use('/', transcribeRouter); // POST /transcribe
-router.use('/', downloadTranscriptionRouter); // Download route
+// Modularized routing
+router.use('/', homeRouter);
+router.use('/submit', submitRouter);
+router.use('/transcribe', transcribeRouter);
+router.use('/download', downloadTranscriptionRouter);
+router.use('/lookup', lookupRouter); // Include Twilio Lookup route
 
 export default router;

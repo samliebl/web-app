@@ -1,43 +1,33 @@
 import express from 'express';
 import nunjucks from 'nunjucks';
-import dotenv from 'dotenv';
-import multer from 'multer';
+import { config } from 'dotenv';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import routes from './routes/index.js'; // Import modularized routes
+import routes from './routes/index.js';
 
-// Dotenv config.
-dotenv.config();
+// Load environment variables
+config({ path: './.env' });
 
+// Initialize Express app
 const app = express();
-const PORT = process.env.PORT || 3000;
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// Define __dirname for ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Define the project root for consistent path resolution
-const projectRoot = __dirname;
-
-// Configure Nunjucks with layouts
+// Configure Nunjucks
 nunjucks.configure('views', {
     autoescape: true,
     express: app,
 });
 
-// Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
-
 // Use modularized routes
-app.use((req, res, next) => {
-    req.projectRoot = projectRoot; // Attach project root to request object
-    next();
-});
 app.use('/', routes);
 
-// Start Server
+// Start server
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });

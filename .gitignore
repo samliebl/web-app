@@ -8,3 +8,6 @@ uploads/*
 
 # But do not ignore .gitkeep file in uploads
 !uploads/.gitkeep
+
+# Ignore testing micro apps
+test-*

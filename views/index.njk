@@ -18,7 +18,7 @@ app.post('/submit', (req, res) => {
 // All things with the Whisper POST request are further down in `server.js`. 
 // There are many lines of code, so in the interest of brevity, I'm not 
 // including them here. For details, check out the source code on GitHub.</code></pre>
-    <p>When the user navigates to the base directory (<code>/</code>), the backend is serving a Nunjucks template to render to HTML in the browser via a GET API call.</p>
+    <p>When the user navigates to the base directory (<code>/</code>), the backend is serving a Nunjucks template to render to HTML in the browser via a <code>GET</code> API call.</p>
 </section>
 <hr>
 <!-- Section to test POST request -->
@@ -56,6 +56,11 @@ app.post('/submit', (req, res) => {
         </div>
     </div>
 </section>
+<hr>
+<!-- Lookup -->
+<h2>Lookup using Twilio</h2>
+<p>Enter in a telephone number to find out its carrier.</p>
+{% include "_partials/lookup-form.njk" %}
 <hr>
 <section id="client-side-javascript">
     <h2>Details on the client-side JavaScript</h2>
