@@ -1,99 +1,30 @@
 {% extends "_layouts/base.njk" %}
 {% block content %}
 <!-- Section outlining the GET response -->
-<section id="test-get">
-    <h2>Demonstration of a <code>GET</code> API call/request</h2>
-    <p>The fact this page is rendering is a demonstration of a <code>GET</code> API call. If you're familiar working with the server framework <a href="https://expressjs.com/">Express</a>, this should look very familiar.</p>
-    <p>Behind the scenes, the server contains the following routing for the API calls:</p>
-    <pre><code class="language-js">// Routes
-app.get('/', (req, res) => {
-    res.render('index.njk', wrapper); // Pass the wrapper as context
-});
-
-app.post('/submit', (req, res) => {
-    const { name } = req.body;
-    res.json({ message: `Hello, ${name}! This is a POST response.` });
-});
-
-// All things with the Whisper POST request are further down in `server.js`. 
-// There are many lines of code, so in the interest of brevity, I'm not 
-// including them here. For details, check out the source code on GitHub.</code></pre>
-    <p>When the user navigates to the base directory (<code>/</code>), the backend is serving a Nunjucks template to render to HTML in the browser via a <code>GET</code> API call.</p>
+<section id="get-render">
+    {% include "_partials/get-render.njk" %}
 </section>
 <hr>
 <!-- Section to test POST request -->
 <h2 id="test-post">Two Demonstrations of <code>POST</code> API call/requests</h2>
 <!-- Simple POST request demonstration -->
-<section id="test-post-simple">
-    <h3>1: A simple <code>POST</code> API call/request</h3>
-    <form id="nameForm" action="/submit" method="POST">
-        <input type="text" name="name" id="nameInput" placeholder="Enter your name">
-        <button type="submit">Submit</button>
-    </form>
-    <!-- Placeholder for displaying styled POST response -->
-    <div id="responseMessage"></div>
-    <!-- Placeholder for displaying raw JSON POST response -->
-    <pre id="jsonResponse"></pre>
+<section id="post-simple">
+{% include "_partials/post-simple.njk" %}
 </section>
 <hr>
 <!-- Section to test Whisper POST request -->
-<section id="test-post-whisper">
-    <h3>2: A more complex <code>POST</code> request</h3>
-    <p>This part is a bit more interesting. I'm particularly interested in text-to-speech and speech-to-text work. I've had a lot of fun playing around with <a href="https://openai.com/index/whisper/">Whisper</a> by <a href="https://openai.com">OpenAI</a>. You may know them as the makers of ChatGPT. Whisper is a pretty advanced, at least for the general public, way to build transcription features into applications. You upload a file of someone talking and it transcribes it.</p>
-    <p>As a personal request, please keep it two minutes or less. I'm paying OpenAI for this myself!</p>
-    <form id="transcription-form" enctype="multipart/form-data">
-        <label for="audio">Upload audio of someone talking in one of these formats: <code>.mp3</code>, <code>.wav</code>, <code>.m4a</code>, <code>.ogg</code> or <code>.webm</code>.</label>
-        <input type="file" name="audio" accept="audio/*" required />
-        <button type="submit">Upload and Transcribe</button>
-    </form>
-    <div id="transcription-result" style="display: none;">
-        <h2>Transcription Result</h2>
-        <p id="transcription-text"></p>
-        <div>
-            <a href="#" id="copy-result" onclick="copyToClipboard(event)">Copy Result</a> |
-            <a href="#" onclick="clearTranscription(event)">Clear Transcription</a> |
-            <a id="download-link" href="#" download>Download Transcription</a>
-        </div>
-    </div>
+<section id="post-whisper">
+{% include "_partials/post-whisper.njk" %}
 </section>
 <hr>
 <!-- Lookup -->
-<h2>Lookup using Twilio</h2>
-<p>Enter in a telephone number to find out its carrier.</p>
+<section id="post-lookup">
 {% include "_partials/lookup-form.njk" %}
+</section>
 <hr>
-<section id="client-side-javascript">
-    <h2>Details on the client-side JavaScript</h2>
-    <p>We all love the server side. But I started in web development as a front-end developer. I wanted to make my websites look nice and load quickly. So you aren't getting out of here without me showing off some of the client side stuff going on.</p>
-    <p>The JavaScript working on the front end to tie it all together and improve user experience. The technique we’re employing here is called AJAX,<sup>1</sup> and it’s pretty much manadatory for any kind of UX I’d want to create.</p>
-    <p>That’s a technique that enables sites to update without a full reload. Without it, all this would still work—you’d just be taken over to a new, separate page with the options to copy or download the file. I think it's nicer when it just populates right there.</p>
-    <pre><code class="language-js">document.getElementById('transcription-form').addEventListener('submit', async function(event) {
-    event.preventDefault();
-
-    const formData = new FormData(this);
-
-    try {
-        const response = await fetch('/transcribe', {
-            method: 'POST',
-            body: formData
-        });
-        const result = await response.json();
-
-        if (result.transcription) {
-            document.getElementById('transcription-text').textContent = result.transcription;
-            document.getElementById('download-link').href = `/download-transcription/${result.fileName}`;
-            document.getElementById('transcription-result').style.display = 'block';
-        } else {
-            document.getElementById('transcription-text').textContent = 'Transcription failed. Please try again.';
-            document.getElementById('transcription-result').style.display = 'block';
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        document.getElementById('transcription-text').textContent = 'An error occurred. Please try again later.';
-        document.getElementById('transcription-result').style.display = 'block';
-    }
-});</code></pre>
-    <p>You can also dive in “inspecting” this page (on any browser, you cam right click and select an option that should be something like “Inspect” or “Inspect this webpage”, “Inspect element”, etc.) with your browser’s developer tools. Finally, you can review the code on the <a href="https://github.com/samliebl/web-app">GitHub repo</a> in the <code>views/index.njk</code> template.</p>
+<!-- Client-side Javascript -->
+<section id="client-side-js">
+{% include "_partials/client-side-js.njk" %}
 </section>
 <section>
     <h4>Notes</h4>

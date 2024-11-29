@@ -378,3 +378,8 @@ dd,
 dt {
     line-height: 1.65;
 }
+
+.list {
+    list-style: none;
+    padding: 0;
+}

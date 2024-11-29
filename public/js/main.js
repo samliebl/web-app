@@ -102,12 +102,21 @@ document.getElementById('lookupForm')?.addEventListener('submit', async function
         const result = await response.json();
 
         if (result.error) {
-            document.getElementById('lookupResult').innerHTML = `<h2>Error:</h2><pre>${result.error}</pre>`;
+            document.getElementById('lookupResult').innerHTML = `<h4>Error:</h4><pre>${result.error}</pre>`;
         } else {
-            document.getElementById('lookupResult').innerHTML = `<h2>Lookup Result:</h2><pre>${JSON.stringify(result.data, null, 2)}</pre>`;
+            document.getElementById('lookupResult').innerHTML = `
+            <h4>Lookup Result:</h4>
+            <ul class="list">
+    <li>Carrier: ${JSON.stringify(result.data.carrier.name, null, 2)}</li>
+    <li>Number type: ${JSON.stringify(result.data.carrier.type, null, 2)}</li>
+    <li>Country: ${JSON.stringify(result.data.countryCode, null, 2)}</li>
+    <li>Mobile country code: ${JSON.stringify(result.data.carrier.mobile_country_code, null, 2)}</li>
+    <li>Mobile network code: ${JSON.stringify(result.data.carrier.mobile_network_code, null, 2)}</li>
+</ul>
+            `;
         }
     } catch (error) {
         console.error('Error:', error);
-        document.getElementById('lookupResult').innerHTML = `<h2>Error:</h2><pre>${error.message}</pre>`;
+        document.getElementById('lookupResult').innerHTML = `<h4>Error:</h4><pre>${error.message}</pre>`;
     }
 });
