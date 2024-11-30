@@ -383,3 +383,20 @@ dt {
     list-style: none;
     padding: 0;
 }
+
+.carrier-result-list {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+
+.carrier-result-list dd {
+    font-variant-numeric: tabular-nums;
+    border-top :1px solid #d0d0d0;
+    padding:0;
+    margin:0;
+}
+
+dt {
+    font-weight: 700;
+    border-top:1px solid #d0d0d0;
+}

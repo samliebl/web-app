@@ -106,13 +106,18 @@ document.getElementById('lookupForm')?.addEventListener('submit', async function
         } else {
             document.getElementById('lookupResult').innerHTML = `
             <h4>Lookup Result:</h4>
-            <ul class="list">
-    <li>Carrier: ${JSON.stringify(result.data.carrier.name, null, 2)}</li>
-    <li>Number type: ${JSON.stringify(result.data.carrier.type, null, 2)}</li>
-    <li>Country: ${JSON.stringify(result.data.countryCode, null, 2)}</li>
-    <li>Mobile country code: ${JSON.stringify(result.data.carrier.mobile_country_code, null, 2)}</li>
-    <li>Mobile network code: ${JSON.stringify(result.data.carrier.mobile_network_code, null, 2)}</li>
-</ul>
+            <dl class="list carrier-result-list">
+                <dt>Carrier</dt>
+                <dd>${result.data.carrier.name}</dd>
+                <dt>Number type</dt>
+                <dd>${result.data.carrier.type}</dd>
+                <dt>Country</dt>
+                <dd>${result.data.countryCode}</dd>
+                <dt>Mobile country code</dt>
+                <dd>${result.data.carrier.mobile_country_code}</dd>
+                <dt>Mobile network code</dt>
+                <dd>${result.data.carrier.mobile_network_code}</dd>
+            </dl>
             `;
         }
     } catch (error) {
@@ -120,3 +125,4 @@ document.getElementById('lookupForm')?.addEventListener('submit', async function
         document.getElementById('lookupResult').innerHTML = `<h4>Error:</h4><pre>${error.message}</pre>`;
     }
 });
+
