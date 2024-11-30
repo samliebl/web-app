@@ -82,21 +82,17 @@ function clearTranscription(event) {
     document.getElementById('transcription-result').style.display = 'none';
 }
 
-/* -------------------------------
-   Handle POST request for Lookup form
--------------------------------- */
+
 document.getElementById('lookupForm')?.addEventListener('submit', async function (event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault();
 
     const phoneNumber = document.getElementById('phoneNumber').value;
 
     try {
         const response = await fetch('/lookup', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ phoneNumber }),
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ phoneNumber })
         });
 
         const result = await response.json();
@@ -104,20 +100,32 @@ document.getElementById('lookupForm')?.addEventListener('submit', async function
         if (result.error) {
             document.getElementById('lookupResult').innerHTML = `<h4>Error:</h4><pre>${result.error}</pre>`;
         } else {
+            const data = result.data;
+
             document.getElementById('lookupResult').innerHTML = `
-            <h4>Lookup Result:</h4>
-            <dl class="list carrier-result-list">
-                <dt>Carrier</dt>
-                <dd>${result.data.carrier.name}</dd>
-                <dt>Number type</dt>
-                <dd>${result.data.carrier.type}</dd>
-                <dt>Country</dt>
-                <dd>${result.data.countryCode}</dd>
-                <dt>Mobile country code</dt>
-                <dd>${result.data.carrier.mobile_country_code}</dd>
-                <dt>Mobile network code</dt>
-                <dd>${result.data.carrier.mobile_network_code}</dd>
-            </dl>
+                <h4>Lookup Result:</h4>
+                <dl class="list carrier-result-list">
+                    <dt class="carrier-label">Country Code</dt>
+                    <dd class="carrier-value">${data.country_code}</dd>
+                    <dt class="carrier-label">Phone Number</dt>
+                    <dd class="carrier-value">${data.phone_number}</dd>
+                    <dt class="carrier-label">National Format</dt>
+                    <dd class="carrier-value">${data.national_format}</dd>
+                    <dt class="carrier-label">CNAM</dt>
+                    <dd class="carrier-value">${data.caller_name}</dd>
+                    <dt class="carrier-label">Carrier Name</dt>
+                    <dd class="carrier-value">${data.carrier.name}</dd>
+                    <dt class="carrier-label">Mobile Country Code</dt>
+                    <dd class="carrier-value">${data.carrier.mobile_country_code}</dd>
+                    <dt class="carrier-label">Mobile Network Code</dt>
+                    <dd class="carrier-value">${data.carrier.mobile_network_code}</dd>
+                    <dt class="carrier-label">Type</dt>
+                    <dd class="carrier-value">${data.carrier.type}</dd>
+                    <dt class="carrier-label">Error Code</dt>
+                    <dd class="carrier-value">${data.carrier.error_code ?? 'None'}</dd>
+                    <dt class="carrier-label">URL</dt>
+                    <dd class="carrier-value"><a href="${data.url}" target="_blank">${data.url}</a></dd>
+                </dl>
             `;
         }
     } catch (error) {
@@ -125,4 +133,3 @@ document.getElementById('lookupForm')?.addEventListener('submit', async function
         document.getElementById('lookupResult').innerHTML = `<h4>Error:</h4><pre>${error.message}</pre>`;
     }
 });
-
