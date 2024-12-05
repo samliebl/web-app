@@ -4,16 +4,72 @@ Demonstrating some facility with REST APIs and what you can do with them. I also
 
 Find it live at [app.samliebl.com](https://app.samliebl.com).
 
-### REST API demos
+#### Contents
 
-1. Demonstration of a GET API call/request  
-    1. Rendering the site with Nunjucks via Express
-1. Two Demonstrations of POST API call/requests
-    1. A simple POST API call/request
-    1. A more complex POST request
-1. Note on the client-side JavaScript
+1. REST API demos
+1. Note on the client-side JavaScript (AJAX functionality)
+1. App
+    1. Directory structure
+    1. Routes & notes on paths
 
 --
+
+## REST API demos
+
+1. Demonstration of a `GET` API call/request  
+    1. Rendering the site with Nunjucks via Express
+1. Three Demonstrations of `POST` API call/requests
+    1. A simple `POST` API call/request
+    1. A more complex `POST` request
+    1. Number lookup with Twilio carrier lookup API `POST` request
+
+--
+
+## App
+
+The app itself works via the `server.js` file in the home directory.
+
+### Directory structure
+
+```
+.
+├╴ .env¹
+├╴ .env.example²
+├╴ views/
+│  ├╴ _layouts/
+│  │  └╴ base.njk
+│  ├╴ _partials/
+│  │  ├╴ client-side-js.njk
+│  │  ├╴ get-render.njk
+│  │  ├╴ lookup-form.njk
+│  │  ├╴ nav.njk
+│  │  ├╴ post-simple.njk
+│  │  └╴ post-whisper.njk
+│  ├╴ index.njk
+│  └╴ error.njk
+├╴ public/
+│  ├╴ css/
+│  │  └╴ main.css
+│  └╴ js/
+│     └╴ main.js
+├╴ routes/
+│  ├╴ download-transcription.js
+│  ├╴ home.js
+│  ├╴ index.js
+│  ├╴ lookup.js
+│  ├╴ submit.js
+│  └╴ transcribe.njk
+├╴ uploads/³
+└╴ server.js
+
+---
+Notes:
+1. You will add your own
+2. As an example, with placeholder data, for what yours would look like
+3. where the audio files & transcription takes place
+```
+
+Take a look at the source code—mostly in `server.js` and then in the templates directory (`views/`) for the client-side code.
 
 ### Routes
 
@@ -34,40 +90,6 @@ app.use((req, res, next) => {
     next();
 });
 ```
-
-### Directory structure
-
-```
-.
-├╴ .env¹
-├╴ .env.example²
-├╴ views/
-│  ├╴ _layouts/
-│  │   └╴ base.njk
-│  ├╴ index.njk
-│  └╴ error.njk
-├╴ public/
-│  ├╴ css/
-│  │  └╴ main.css
-│  └╴ js/
-│     └╴ main.js
-├╴ routes/
-│  ├╴ download-transcription.js
-│  ├╴ home.js
-│  ├╴ index.js
-│  ├╴ submit.js
-│  └╴ transcribe.njk
-├╴ uploads/³
-└╴ server.js
-
----
-Notes:
-1. You will add your own
-2. As an example, with placeholder data, for what yours would look like
-3. where the audio files & transcription takes place
-```
-
-Take a look at the source code—mostly in `server.js` and then in the templates directory (`views/`) for the client-side code.
 
 ## License
 
