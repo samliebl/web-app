@@ -1,8 +1,8 @@
-
-    <h2>Demonstration of a <code>GET</code> API call/request</h2>
-    <p>The fact this page is rendering is a demonstration of a <code>GET</code> API call. If you have ever worked with the server framework <a href="https://expressjs.com/">Express</a>, this should look familiar.</p>
-    <p>Behind the scenes, the server contains the following routing for the API calls:</p>
-    <pre><code class="language-js">// Routes
+{# Explaining GET API & rendering functionality #}
+<h2>Demonstration of a <code>GET</code> API call/request</h2>
+<p>The fact this page is rendering is a demonstration of a <code>GET</code> API call. If you have ever worked with the server framework <a href="https://expressjs.com/">Express</a>, this should look familiar.</p>
+<p>Behind the scenes, the server contains the following routing for the API calls:</p>
+<pre><code class="language-js">// Routes
 app.get('/', (req, res) => {
     res.render('index.njk', wrapper); // Pass the wrapper as context
 });
@@ -15,4 +15,4 @@ app.post('/submit', (req, res) => {
 // All things with the Whisper POST request are further down in `server.js`. 
 // There are many lines of code, so in the interest of brevity, I'm not 
 // including them here. For details, check out the source code on GitHub.</code></pre>
-    <p>When the user navigates to the base directory (<code>/</code>), the backend is serving a Nunjucks template to render to HTML in the browser via a <code>GET</code> API call.</p>
+<p>When the user navigates to the base directory (<code>/</code>), the backend is serving a Nunjucks template to render to HTML in the browser via a <code>GET</code> API call.</p>

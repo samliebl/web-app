@@ -1,36 +1,34 @@
 {% extends "_layouts/base.njk" %}
 {% block content %}
-<!-- Section outlining the GET response -->
+<!-- Section: outlining the GET response -->
 <section id="get-render">
     {% include "_partials/get-render.njk" %}
 </section>
 <hr>
-<!-- Section to test POST request -->
-<h2 id="test-post">Two Demonstrations of <code>POST</code> API call/requests</h2>
-<!-- Simple POST request demonstration -->
+<!-- Section: test POST request -->
+<h2 id="test-post">Three demonstrations of <code>POST</code> API call/requests</h2>
+<!-- Section: simple POST request demonstration -->
 <section id="post-simple">
-{% include "_partials/post-simple.njk" %}
+    {% include "_partials/post-simple.njk" %}
 </section>
 <hr>
-<!-- Section to test Whisper POST request -->
+<!-- Section: test Whisper POST request -->
 <section id="post-whisper">
-{% include "_partials/post-whisper.njk" %}
+    {% include "_partials/post-whisper.njk" %}
 </section>
 <hr>
-<!-- Lookup -->
+<!-- Section: Twilio Lookup -->
 <section id="post-lookup">
-{% include "_partials/lookup-form.njk" %}
+    {% include "_partials/lookup-form.njk" %}
 </section>
 <br>
 <hr>
 <!-- Client-side Javascript -->
 <section id="client-side-js">
-{% include "_partials/client-side-js.njk" %}
+    {% include "_partials/client-side-js.njk" %}
 </section>
+<!-- Section: acknowledgments -->
 <section>
-    <h4>Notes</h4>
-    <ol>
-        <li>AJAX (Asynchronous JavaScript and XML) is a way to (among many other things) go back and forth with servers in such a way that it allows parts of a page to <em>update without a full reload.</em> In this application, AJAX is utilized to handle “form submissions” (uploading that file and returning the transcription). When you submit that form (or uploads a file), AJAX shoots it to the server in the background. While nobody’s looking 😆, the page updates dynamically and it’s just right there!</li>
-    </ol>
+    {% include "_partials/notes.njk" %}
 </section>
 {% endblock %}

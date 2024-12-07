@@ -1,8 +1,9 @@
+{# Client-side JavaScript #}
 <h2>Details on the client-side JavaScript</h2>
-    <p>We all love the server side. But I started in web development as a front-end developer. I wanted to make my websites look nice and load quickly. So you aren't getting out of here without me showing off some of the client side stuff going on.</p>
-    <p>The JavaScript working on the front end to tie it all together and improve user experience. The technique we’re employing here is called AJAX,<sup>1</sup> and it’s pretty much manadatory for any kind of UX I’d want to create.</p>
-    <p>That’s a technique that enables sites to update without a full reload. Without it, all this would still work—you’d just be taken over to a new, separate page with the options to copy or download the file. I think it's nicer when it just populates right there.</p>
-    <pre><code class="language-js">document.getElementById('transcription-form').addEventListener('submit', async function(event) {
+<p>We all love the server side. But I started in web development as a front-end developer. I wanted to make my websites look nice and load quickly. So you aren't getting out of here without me showing off some of the client side stuff going on.</p>
+<p>The JavaScript working on the front end to tie it all together and improve user experience. The technique we’re employing here is called AJAX,<sup>1</sup> and it’s pretty much manadatory for any kind of UX I’d want to create.</p>
+<p>That’s a technique that enables sites to update without a full reload. Without it, all this would still work—you’d just be taken over to a new, separate page with the options to copy or download the file. I think it's nicer when it just populates right there.</p>
+<pre><code class="language-js">document.getElementById('transcription-form').addEventListener('submit', async function(event) {
     event.preventDefault();
 
     const formData = new FormData(this);
@@ -28,4 +29,4 @@
         document.getElementById('transcription-result').style.display = 'block';
     }
 });</code></pre>
-    <p>You can also dive in by “inspecting” this page with your browser’s developer tools. On any browser, right click and select an option that should be something like “Inspect” or “Inspect this webpage,” “Inspect element,” etc.)  Alternatively, you can review the code on the <a href="https://github.com/samliebl/web-app">GitHub repo</a> in the <code>public/js/main.js</code> file, which is the public JavaScript file loaded globally by the app.</p>
+<p>You can also dive in by “inspecting” this page with your browser’s developer tools. On any browser, right click and select an option that should be something like “Inspect” or “Inspect this webpage,” “Inspect element,” etc.) Alternatively, you can review the code on the <a href="https://github.com/samliebl/web-app">GitHub repo</a> in the <code>public/js/main.js</code> file, which is the public JavaScript file loaded globally by the app.</p>
