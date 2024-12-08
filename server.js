@@ -23,6 +23,9 @@ nunjucks.configure('views', {
     express: app,
 });
 
+// Set default view engine to 'njk'
+app.set('view engine', 'njk');
+
 // Use modularized routes
 app.use('/', routes);
 

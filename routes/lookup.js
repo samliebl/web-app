@@ -14,8 +14,6 @@ router.post('/', async (req, res) => {
             fields: ['line_type_intelligence']
         });
 
-        console.log('Raw API Response:', data); // Debugging
-        console.log('Raw API lineTypeIntelligence:', data.lineTypeIntelligence); // Debugging
 
         // Properly access and map nested properties
         const responseData = {
@@ -33,7 +31,6 @@ router.post('/', async (req, res) => {
             url: data.url ?? 'N/A'
         };
 
-        console.log('Mapped Response Data:', responseData); // Debugging
         res.json({ data: responseData, error: null });
     } catch (error) {
         console.error('Error fetching phone number details:', error.message);
