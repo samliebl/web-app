@@ -2,7 +2,7 @@
 <h2>Demonstration of a <code>GET</code> API call/request</h2>
 <p>The fact this page is rendering is a demonstration of a <code>GET</code> API call. If you have ever worked with the server framework <a href="https://expressjs.com/">Express</a>, this should look familiar.</p>
 <p>Behind the scenes, the server contains the following routing for the API calls:</p>
-<pre><code class="language-js">// GET route to render the homepage with Nunjucks
+<pre><code class="language-js">// `GET` route to render the homepage with Nunjucks
 router.get('/', (req, res) => {
     res.render('index.njk', { data: undefined, error: undefined });
     // Ensure no result is passed

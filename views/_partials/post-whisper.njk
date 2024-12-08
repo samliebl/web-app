@@ -3,8 +3,8 @@
 <p>This part is a bit more interesting. I'm particularly interested in text-to-speech and speech-to-text work. I've had a lot of fun playing around with <a href="https://openai.com/index/whisper/">Whisper</a> by <a href="https://openai.com">OpenAI</a>. You may know them as the makers of ChatGPT. Whisper is a pretty advanced, at least for the general public, way to build transcription features into applications. You upload a file of someone talking and it transcribes it.</p>
 <p>As a personal request, please keep it two minutes or less. I'm paying OpenAI for this myself!</p>
 <form id="transcription-form" enctype="multipart/form-data">
-    <label for="audio">Upload audio of someone talking in one of these formats: <code>.mp3</code>, <code>.wav</code>, <code>.m4a</code>, <code>.ogg</code> or <code>.webm</code>.</label>
-    <input type="file" name="audio" accept="audio/*" required />
+    <label for="audio">Upload audio of someone talking in one of these formats: <code>.mp3</code>, <code>.wav</code>, <code>.m4a</code>, <code>.ogg</code>, or <code>.webm</code>.</label>
+    <input type="file" id="audio" name="audio" accept=".mp3,.wav,.m4a,.ogg,.webm">
     <button type="submit">Upload and Transcribe</button>
 </form>
 <div id="transcription-result" style="display: none;">
