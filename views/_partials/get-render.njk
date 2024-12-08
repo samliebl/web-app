@@ -2,17 +2,22 @@
 <h2>Demonstration of a <code>GET</code> API call/request</h2>
 <p>The fact this page is rendering is a demonstration of a <code>GET</code> API call. If you have ever worked with the server framework <a href="https://expressjs.com/">Express</a>, this should look familiar.</p>
 <p>Behind the scenes, the server contains the following routing for the API calls:</p>
-<pre><code class="language-js">// Routes
-app.get('/', (req, res) => {
-    res.render('index.njk', wrapper); // Pass the wrapper as context
+<pre><code class="language-js">// GET route to render the homepage with Nunjucks
+router.get('/', (req, res) => {
+    res.render('index.njk', { data: undefined, error: undefined });
+    // Ensure no result is passed
 });
+
+// In contrast, here's the `POST` route for the simple `POST` request 
+// demonstration. It's in `routes/submit.js`.
 
 app.post('/submit', (req, res) => {
     const { name } = req.body;
     res.json({ message: `Hello, ${name}! This is a POST response.` });
 });
 
-// All things with the Whisper POST request are further down in `server.js`. 
-// There are many lines of code, so in the interest of brevity, I'm not 
-// including them here. For details, check out the source code on GitHub.</code></pre>
+// All things with the Whisper and Twilio `POST` requests are modularized into 
+// individual routes in the `routes/` directory. There are many lines of code in
+// multiple directories, so in the interest of brevity, I'm not including them 
+// here. For details, check out the source code on GitHub.</code></pre>
 <p>When the user navigates to the base directory (<code>/</code>), the backend is serving a Nunjucks template to render to HTML in the browser via a <code>GET</code> API call.</p>
