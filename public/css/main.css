@@ -295,7 +295,7 @@ pre[class*=language-]::selection {
 }
 
 pre[class*=language-] {
-/*    padding: 1em;*/
+    /*    padding: 1em;*/
     margin: .5em 0;
     overflow: auto;
     border-radius: .3em
@@ -440,4 +440,39 @@ dt {
 dt {
     font-weight: 700;
     border-top: 1px solid #d0d0d0;
+}
+
+/* Back to top */
+
+#backToTop {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: none;
+    /* Hidden by default */
+    background-color: #333;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+#backToTop a {
+    color: white;
+    text-decoration: none;
+}
+
+#backToTop:hover {
+    background-color: #555;
+    cursor: pointer;
+}
+
+/* Adjust the button for larger screens */
+@media (min-width: 1024px) {
+    #backToTop {
+        left: auto; /* Reset left positioning */
+        right: calc((100% - 800px) / 2 - 80px); /* Position outside centered body */
+    }
 }
