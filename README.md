@@ -20,8 +20,12 @@ Find it live at [app.samliebl.com](https://app.samliebl.com).
     1. Rendering the site with Nunjucks via Express
 1. Three Demonstrations of `POST` API call/requests
     1. A simple `POST` API call/request
-    1. A more complex `POST` request
-    1. Number lookup with Twilio carrier lookup API `POST` request
+    1. A more complex `POST` request &mdash; **disabled**
+    1. Number lookup with Twilio carrier lookup API `POST` request &mdash; **disabled**
+
+The last two are disabled. Their forms are marked disabled on the page and
+their routes answer `503`; the route modules stay in `routes/` so they can be
+turned back on by restoring the mounts in `routes/index.js`.
 
 --
 
