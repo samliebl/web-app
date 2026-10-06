@@ -1,10 +1,11 @@
 {# Demo 3: Twilio POST API request #}
-<h3>3: <code>POST</code> call lookup using Twilio</h2>
+<h3>3: <code>POST</code> call lookup using Twilio <small>(disabled)</small></h3>
+<p><strong>This demo is currently disabled.</strong> The write-up below describes what it did.</p>
 <p>Enter in a telephone number to find out its carrier.</p>
 <form id="lookupForm" action="/lookup" method="POST">
     <label for="phoneNumber">Enter Phone Number:</label>
-    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="+15555555555" required>
-    <button type="submit">Lookup</button>
+    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="+15555555555" disabled>
+    <button type="submit" disabled>Lookup</button>
 </form>
 
 <div id="lookupResult"></div>
